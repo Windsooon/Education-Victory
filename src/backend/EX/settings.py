@@ -3,7 +3,6 @@ from pathlib import Path
 
 import dj_database_url
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 DEFAULT_DIR = Path(__file__).resolve().parent
 STATIC_DIR = Path(__file__).resolve().parent.parent.parent
@@ -63,7 +62,6 @@ elif ENVIRONMENT in ('STAGE', 'PRODUCTION'):
 
 OPENAI_SECRET_KEY = os.getenv('OPENAI_SECRET_KEY')
 
-# Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
