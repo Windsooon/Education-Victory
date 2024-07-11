@@ -1,7 +1,6 @@
 import os
-from pathlib import Path
-
 import dj_database_url
+from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DEFAULT_DIR = Path(__file__).resolve().parent
