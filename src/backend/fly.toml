@@ -1,4 +1,4 @@
-app = 'stage'
+app = 'ev-stage'
 primary_region = 'sea'
 console_command = '/code/manage.py shell'
 
@@ -7,6 +7,12 @@ console_command = '/code/manage.py shell'
   ENVIRONMENT = "PLACEHOLDER_ENVIRONMENT"
   ROOT = "PLACEHOLDER_ROOT"
   HOST = "PLACEHOLDER_HOST"
+  DB_USER = "PLACEHOLDER_DB_USER"
+  DB_PASSWORD = "PLACEHOLDER_DB_PASSWORD"
+  DB_HOSTNAME = "PLACEHOLDER_DB_HOSTNAME"
+  DB_URL = "PLACEHOLDER_DB_URL"
+  STATIC_CDN = "PLACEHOLDER_STATIC_CDN"
+  SECRET_KEY = "PLACEHOLDER_SECRET_KEY"
 
 [http_service]
   internal_port = 8000
