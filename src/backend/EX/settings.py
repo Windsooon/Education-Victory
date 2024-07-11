@@ -53,11 +53,10 @@ elif ENVIRONMENT in ('STAGE', 'PRODUCTION'):
     if ENVIRONMENT == 'STAGE':
         DEBUG = True
         SECRET_KEY = 'django-insecure-@s=_aoq!k!h-@b^%t!+zoxo4fs@e+ccr^lld4fd9+3oxdg^!^!'
-        EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     else:
         DEBUG = False
         SECRET_KEY = os.getenv('SECRET_KEY')
-        EMAIL_BACKEND = os.getenv('EMAIL_BACKEND')
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     ROOT = os.getenv('ROOT')
     STATIC_ROOT = os.path.join(STATIC_DIR, 'static')
     ALLOWED_HOSTS = [os.getenv('HOST')]
