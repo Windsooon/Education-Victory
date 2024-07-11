@@ -73,8 +73,8 @@ elif ENVIRONMENT in ('STAGE', 'PRODUCTION'):
 
 
 OPENAI_SECRET_KEY = os.getenv('OPENAI_SECRET_KEY')
-# Application definition
 
+# Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
