@@ -50,15 +50,12 @@ elif ENVIRONMENT in ('STAGE', 'PRODUCTION'):
     CSRF_TRUSTED_ORIGINS = [os.getenv('CSRF')]
 
     DATABASES = {
-            'default': {
-                'ENGINE': 'django.db.backends.postgresql',
-                'NAME': 'postgres',
-                'USER': os.getenv('DB_USER'),
-                'PASSWORD': os.getenv('DB_PASSWORD'),
-                'HOST': os.getenv('DB_HOSTNAME'),
-                'PORT': '5432',
-            }
-        }
+        'default': dj_database_url.parse(
+            os.getenv('DB_URL'),
+            conn_max_age=600,
+            conn_health_checks=True,
+            )
+    }
     STATIC_URL = os.getenv('STATIC_CDN')
 
 
