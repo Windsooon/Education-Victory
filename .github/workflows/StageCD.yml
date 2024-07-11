@@ -21,14 +21,13 @@ jobs:
       - name: Replace secrets in fly.toml
         working-directory: ./src/backend
         run: |
-          sed -i "s|PLACEHOLDER_PORT|"$PORT"|g" fly.toml
-          sed -i "s|PLACEHOLDER_ROOT|"$ROOT"|g" fly.toml
-          sed -i "s|PLACEHOLDER_HOST|"$HOST"|g" fly.toml
-          sed -i "s|PLACEHOLDER_ENVIRONMENT|"$ENVIRONMENT"|g" fly.toml
+          sed -i "s|PLACEHOLDER_ROOT|${{ env.ROOT }}|g" fly.toml
+          sed -i "s|PLACEHOLDER_HOST|${{ env.HOST }}|g" fly.toml
+          sed -i "s|PLACEHOLDER_ENVIRONMENT|${{ env.ENVIRONMENT }}|g" fly.toml
 
       - name: Setup flyctl
         uses: superfly/flyctl-actions/setup-flyctl@master
 
       - name: Deploy
-        run: flyctl deploy --app $APP_NAME
+        run: flyctl deploy --app ${{ env.APP_NAME }}
         working-directory: ./src/backend
