@@ -21,28 +21,36 @@ STATIC_DIR = Path(__file__).resolve().parent.parent.parent
 
 ENVIRONMENT = os.getenv('ENVIRONMENT')
 
-if ENVIRONMENT == 'LOCAL':
+if ENVIRONMENT in ('LOCAL', 'TEST'):
     DEBUG = True
     ROOT = 'http://127.0.0.1:8000'
     ALLOWED_HOSTS = ['localhost', '127.0.0.1']
     SECRET_KEY = 'django-insecure-@s=_aoq!k!h-@b^%t!+zoxo4fs@e+ccr^lld4fd9+3oxdg^!^!'
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'postgres',
-            'USER': 'postgres',
-            'PASSWORD': 'test',
-            'HOST': 'localhost',
-            'PORT': '5432',
+    if ENVIRONMENT == 'TEST':
+        DATABASES = {
+            "default": {
+                "ENGINE": "django.db.backends.sqlite3",
+                "NAME": "mydatabase",
+            }
         }
-    }
+    else:
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.postgresql',
+                'NAME': 'postgres',
+                'USER': 'postgres',
+                'PASSWORD': 'test',
+                'HOST': 'localhost',
+                'PORT': '5432',
+            }
+        }
     STATIC_URL = 'static/'
     STATICFILES_DIRS = [
         STATIC_DIR / "static",
     ]
-elif ENVIRONMENT in ('TEST', 'PRODUCTION'):
-    if ENVIRONMENT == 'TEST':
+elif ENVIRONMENT in ('STAGE', 'PRODUCTION'):
+    if ENVIRONMENT == 'STAGE':
         DEBUG = True
         SECRET_KEY = 'django-insecure-@s=_aoq!k!h-@b^%t!+zoxo4fs@e+ccr^lld4fd9+3oxdg^!^!'
         EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -54,13 +62,10 @@ elif ENVIRONMENT in ('TEST', 'PRODUCTION'):
     STATIC_ROOT = os.path.join(STATIC_DIR, 'static')
     ALLOWED_HOSTS = [os.getenv('HOST')]
     CSRF_TRUSTED_ORIGINS = [os.getenv('CSRF')]
-    # ALLOWED_HOSTS = ['https://*', 'http://*', 'education-victory.fly.dev']
-    # CSRF_TRUSTED_ORIGINS = ['https://*', 'http://*']
 
     DATABASES = {
         'default': dj_database_url.parse(
             os.getenv('DATABASE_URL'),
-            # "postgres://postgres:b71JGJvwulPbiOf@ev-test-db.flycast:5432",
             conn_max_age=600,
             conn_health_checks=True,
             )

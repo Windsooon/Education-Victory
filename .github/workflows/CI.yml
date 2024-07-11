@@ -5,7 +5,7 @@ on:
   pull_request:
 
 env:
-  ENVIRONMENT: LOCAL
+  ENVIRONMENT: TEST
 
 jobs:
   build:
