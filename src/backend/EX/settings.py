@@ -49,11 +49,14 @@ elif ENVIRONMENT in ('STAGE', 'PRODUCTION'):
     ALLOWED_HOSTS = [os.getenv('HOST')]
     CSRF_TRUSTED_ORIGINS = [os.getenv('CSRF')]
     DATABASES = {
-        'default': dj_database_url.parse(
-            default=os.getenv('DB_URL'),
-            conn_max_age=600,
-            conn_health_checks=True,
-            )
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.getenv('DB_NAME'),
+            'USER': os.getenv('DB_USER'),
+            'PASSWORD': os.getenv('DB_PASSWORD'),
+            'HOST': os.getenv('DB_HOST'),
+            'PORT': '5432',
+        }
     }
     STATIC_URL = os.getenv('STATIC_CDN')
 

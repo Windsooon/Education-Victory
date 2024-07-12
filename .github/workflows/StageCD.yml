@@ -10,9 +10,9 @@ env:
   ENVIRONMENT: ${{ secrets.STAGE_ENVIRONMENT }}
   APP_NAME: ${{ secrets.STAGE_APP_NAME }}
   DB_USER: ${{ secrets.STAGE_DB_USER }}
+  DB_NAME: ${{ secrets.STAGE_DB_NAME }}
   DB_PASSWORD: ${{ secrets.STAGE_DB_PASSWORD }}
-  DB_HOSTNAME: ${{ secrets.STAGE_DB_HOSTNAME }}
-  DB_URL: ${{ secrets.STAGE_DB_URL }}
+  DB_HOST: ${{ secrets.STAGE_DB_HOST }}
   STATIC_CDN: ${{ secrets.STATIC_CDN }}
   SECRET_KEY: ${{ secrets.SECRET_KEY }}
 
@@ -30,10 +30,10 @@ jobs:
           sed -i "s|PLACEHOLDER_ROOT|${{ env.ROOT }}|g" fly.toml
           sed -i "s|PLACEHOLDER_HOST|${{ env.HOST }}|g" fly.toml
           sed -i "s|PLACEHOLDER_ENVIRONMENT|${{ env.ENVIRONMENT }}|g" fly.toml
+          sed -i "s|PLACEHOLDER_DB_NAME|${{ env.DB_NAME }}|g" fly.toml
           sed -i "s|PLACEHOLDER_DB_USER|${{ env.DB_USER }}|g" fly.toml
           sed -i "s|PLACEHOLDER_DB_PASSWORD|${{ env.DB_PASSWORD }}|g" fly.toml
-          sed -i "s|PLACEHOLDER_DB_HOSTNAME|${{ env.DB_HOSTNAME }}|g" fly.toml
-          sed -i "s|PLACEHOLDER_DB_URL|${{ env.DB_URL }}|g" fly.toml
+          sed -i "s|PLACEHOLDER_DB_HOST|${{ env.DB_HOST }}|g" fly.toml
           sed -i "s|PLACEHOLDER_STATIC_CDN|${{ env.STATIC_CDN }}|g" fly.toml
           sed -i "s|PLACEHOLDER_SECRET_KEY|${{ env.SECRET_KEY }}|g" fly.toml
 
