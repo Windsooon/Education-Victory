@@ -48,10 +48,9 @@ elif ENVIRONMENT in ('STAGE', 'PRODUCTION'):
     STATIC_ROOT = os.path.join(STATIC_DIR, 'static')
     ALLOWED_HOSTS = [os.getenv('HOST')]
     CSRF_TRUSTED_ORIGINS = [os.getenv('CSRF')]
-
     DATABASES = {
         'default': dj_database_url.parse(
-            os.getenv('DB_URL'),
+            default=os.getenv('DB_URL'),
             conn_max_age=600,
             conn_health_checks=True,
             )
