@@ -1,4 +1,4 @@
-app = 'ev-stage'
+app = 'ev-production'
 primary_region = 'sea'
 console_command = '/code/manage.py shell'
 
