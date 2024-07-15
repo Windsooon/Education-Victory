@@ -46,7 +46,7 @@ elif ENVIRONMENT in ('STAGE', 'PRODUCTION'):
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     ROOT = os.getenv('ROOT')
     STATIC_ROOT = os.path.join(STATIC_DIR, 'static')
-    ALLOWED_HOSTS = [os.getenv('HOST')]
+    ALLOWED_HOSTS = os.getenv('HOST', '').split(',')
     CSRF_TRUSTED_ORIGINS = [os.getenv('CSRF')]
     DATABASES = {
         'default': {
