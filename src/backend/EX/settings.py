@@ -7,10 +7,10 @@ DEFAULT_DIR = Path(__file__).resolve().parent
 STATIC_DIR = Path(__file__).resolve().parent.parent.parent
 
 ENVIRONMENT = os.getenv('ENVIRONMENT')
+ROOT = request.build_absolute_uri('/')
 
 if ENVIRONMENT in ('LOCAL', 'TEST'):
     DEBUG = True
-    ROOT = 'http://127.0.0.1:8000'
     ALLOWED_HOSTS = ['localhost', '127.0.0.1']
     SECRET_KEY = 'django-insecure-@s=_aoq!k!h-@b^%t!+zoxo4fs@e+ccr^lld4fd9+3oxdg^!^!'
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -44,7 +44,6 @@ elif ENVIRONMENT in ('STAGE', 'PRODUCTION'):
         DEBUG = False
         SECRET_KEY = os.getenv('SECRET_KEY')
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    ROOT = os.getenv('ROOT')
     STATIC_ROOT = os.path.join(STATIC_DIR, 'static')
     ALLOWED_HOSTS = os.getenv('HOST', '').split(',')
     CSRF_TRUSTED_ORIGINS = [os.getenv('CSRF')]
