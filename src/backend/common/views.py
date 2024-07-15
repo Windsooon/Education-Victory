@@ -21,13 +21,13 @@ User = get_user_model()
 
 def home(request):
     # HTML for home page
-    return render(request, 'common/home.html', {'root': settings.ROOT})
+    return render(request, 'common/home.html', {'root': request.build_absolute_uri('/')})
 
 def practice(request):
-    return render(request, 'common/practice.html', {'root': settings.ROOT})
+    return render(request, 'common/practice.html', {'root': request.build_absolute_uri('/')})
 
 def roadmap(request):
-    return render(request, 'common/roadmap.html', {'root': settings.ROOT})
+    return render(request, 'common/roadmap.html', {'root': request.build_absolute_uri('/')})
 
 def evaluation(request, type):
     if type == 'coding':

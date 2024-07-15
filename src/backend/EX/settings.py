@@ -7,7 +7,6 @@ DEFAULT_DIR = Path(__file__).resolve().parent
 STATIC_DIR = Path(__file__).resolve().parent.parent.parent
 
 ENVIRONMENT = os.getenv('ENVIRONMENT')
-ROOT = request.build_absolute_uri('/')
 
 if ENVIRONMENT in ('LOCAL', 'TEST'):
     DEBUG = True
