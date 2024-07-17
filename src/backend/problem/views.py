@@ -20,7 +20,7 @@ from common.models import UserAbility
 
 def problem(request, name):
     return render(request, 'problem/problem.html',
-        {'root': settings.ROOT, 'name': name, 'user_id': request.user.id})
+        {'root': request.build_absolute_uri('/'), 'name': name, 'user_id': request.user.id})
 
 
 def get_tag_score(user, category, num=3):
