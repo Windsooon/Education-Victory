@@ -35,7 +35,7 @@ var app = new Vue({
   methods: {
     fetchProblem() {
       const problem_name = this.problemName;
-      return axios.get(this.root + '/api/problem/?name=' + problem_name)
+      return axios.get(this.root + 'api/problem/?name=' + problem_name)
         .then(response => {
           if (response.data && response.data.length > 0) {
             this.problem = response.data[0]; // Assuming the first item is the desired problem
